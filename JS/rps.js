@@ -18,4 +18,11 @@ if(num >= 0 && num < 1/3) {
     computer = 'scisors';
  }
 
+
+ console.log('Computer choice: ', computer);
+
+ if(computer === userChoice) {
+    result = 'Thats a Tie';
+ }
+ else if (userChoice === 'rock')
 }
