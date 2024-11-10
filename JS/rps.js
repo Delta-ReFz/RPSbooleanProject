@@ -1,0 +1,3 @@
+
+let computer = '';
+let result = '';
