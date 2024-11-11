@@ -15,14 +15,29 @@ if(num >= 0 && num < 1/3) {
  }
 
  else {
-    computer = 'scisors';
+    computer = 'scissors';
  }
 
 
  console.log('Computer choice: ', computer);
 
  if(computer === userChoice) {
+ 
     result = 'Thats a Tie';
  }
- else if (userChoice === 'rock')
+
+ else if (
+ 
+    (userChoice === 'rock' && computer === 'scissors') ||
+    (userChoice === 'paper' && computer === 'rock') ||
+    (userChoice === 'scissors' && computer === 'paper')
+) {
+    result = 'You Win';
+}
+
+else {
+    result = 'You Lose';
+}
+
+alert('The computer chose ' + computer + '\n' + result);
 }
