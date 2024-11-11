@@ -60,3 +60,12 @@ alert('You picked ' + userChoice +' The computer picked ' + computer + '\n' + re
     score.wins + ' Losses: ' + score.losses + ' Ties: ' + score.ties);
 }
 
+function reset(userChoice) {
+
+    if(userChoice === 'reset') {
+
+        score.wins = 0;
+        score.losses = 0;
+        score.ties = 0;
+    }
+}
