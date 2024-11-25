@@ -98,6 +98,62 @@ button:active {
     color: #ffcc00;
 }
 
+.js-moves {
+    font-size: 1.8rem;
+    margin-top: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: #fff;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6);
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+/* User Move Styling */
+.user-move {
+    color: #ffcc00;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Computer Move Styling */
+.computer-move {
+    color: #3498db;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* vs Text Styling */
+.vs {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+/* Hover Effect for the Moves */
+.js-moves:hover {
+    transform: scale(1.05);
+}
+
+/* Animating the Moves */
+@keyframes shake {
+    0% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(0px); }
+}
+
+.js-moves span {
+    animation: shake 0.5s ease-in-out;
+    animation-iteration-count: 1;
+}
+
 /* Media Query for Mobile Responsiveness */
 @media (max-width: 600px) {
     .rps-title {

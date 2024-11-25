@@ -108,6 +108,18 @@ function updateMovesElement() {
     if (!userChoice && !computer) {
         document.querySelector('.js-moves').innerHTML = 'Make your move!';
     } else {
-        document.querySelector('.js-moves').innerHTML = `You: ${userChoice} - Computer: ${computer}`;
+        document.querySelector('.js-moves').innerHTML = `
+        <span class="user-move">${getIcon(userChoice)}</span> 
+        <span class="vs"> vs </span> 
+        <span class="computer-move">${getIcon(computer)}</span>
+    `;
     }
 }
+
+function getIcon(choice) {
+    if (choice === 'rock') return '🪨';
+    if (choice === 'paper') return '📄';
+    if (choice === 'scissors') return '✂️';
+    return '';
+}
+
