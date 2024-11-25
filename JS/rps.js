@@ -11,14 +11,17 @@ if (!score) {
     }
 }
 
+let computer = '';
+let result = '';
+let userChoice= '';
+
 updateScoreElement();
+updateResultElement();
+updateMovesElement();
 
-function play(userChoice) {
+function play(Choice) {
 
-    let computer = '';
-    let result = '';
-
-
+    userChoice = Choice;
     const num = Math.random();
 
     if (num >= 0 && num < 1 / 3) {
@@ -66,20 +69,26 @@ function play(userChoice) {
 
     //update the score en live sur la page pas besoin de refresh, il faut mettre la logique en dessous du local storage
     updateScoreElement();
-
-    alert('You picked ' + userChoice + ' The computer picked ' + computer + '\n' + result + '\nWins:  ' +
-        score.wins + ' Losses: ' + score.losses + ' Ties: ' + score.ties);
+    updateResultElement();
+    updateMovesElement();
 }
 
-function reset(userChoice) {
+function reset(Choice) {
+
+    userChoice = Choice;
 
     if (userChoice === 'reset') {
 
         score.wins = 0;
         score.losses = 0;
         score.ties = 0;
-        localStorage.removeItem('score')
+        localStorage.removeItem('score');
+        userChoice = '';
+        computer = '';
+        result = '';
         updateScoreElement();
+        updateResultElement();
+        updateMovesElement();
     }
 }
 
@@ -87,4 +96,18 @@ function updateScoreElement() {
 
     document.querySelector('.js-score').innerHTML = `Wins: 
     ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+}
+
+function updateResultElement() {
+
+    document.querySelector('.js-result').innerHTML = `${result}`;
+
+}
+
+function updateMovesElement() {
+    if (!userChoice && !computer) {
+        document.querySelector('.js-moves').innerHTML = 'Make your move!';
+    } else {
+        document.querySelector('.js-moves').innerHTML = `You: ${userChoice} - Computer: ${computer}`;
+    }
 }
