@@ -1,15 +1,17 @@
 let score = JSON.parse(localStorage.getItem('score'));
 
 // Same as if(score === null)
-if(!score) {
+if (!score) {
 
     score = {
 
         wins: 0,
         ties: 0,
-        losses: 0 
+        losses: 0
     }
 }
+
+updateScoreElement();
 
 function play(userChoice) {
 
@@ -17,62 +19,72 @@ function play(userChoice) {
     let result = '';
 
 
-const num = Math.random();
+    const num = Math.random();
 
-if(num >= 0 && num < 1/3) {
-    computer = 'rock';
- }
+    if (num >= 0 && num < 1 / 3) {
+        computer = 'rock';
+    }
 
- else if (num >= 1/3 && num < 2/3) {
-    computer = 'paper';
- }
+    else if (num >= 1 / 3 && num < 2 / 3) {
+        computer = 'paper';
+    }
 
- else {
-    computer = 'scissors';
- }
+    else {
+        computer = 'scissors';
+    }
 
- if(computer === userChoice) {
- 
-    result = 'Thats a Tie';
- }
+    if (computer === userChoice) {
 
- else if (
- 
-    (userChoice === 'rock' && computer === 'scissors') ||
-    (userChoice === 'paper' && computer === 'rock') ||
-    (userChoice === 'scissors' && computer === 'paper')
-) {
-    result = 'You Win';
-}
+        result = 'Thats a Tie';
+    }
 
-else {
-    result = 'You Lose';
-}
+    else if (
 
-if(result === 'You Win') {
+        (userChoice === 'rock' && computer === 'scissors') ||
+        (userChoice === 'paper' && computer === 'rock') ||
+        (userChoice === 'scissors' && computer === 'paper')
+    ) {
+        result = 'You Win';
+    }
 
-    score.wins += 1;
-} else if(result === 'You Lose') {
+    else {
+        result = 'You Lose';
+    }
 
-    score.losses += 1;
-} else if(result === 'Thats a Tie') {
+    if (result === 'You Win') {
 
-    score.ties += 1;
-}
+        score.wins += 1;
+    } else if (result === 'You Lose') {
 
-localStorage.setItem('score', JSON.stringify(score));
+        score.losses += 1;
+    } else if (result === 'Thats a Tie') {
 
-alert('You picked ' + userChoice +' The computer picked ' + computer + '\n' + result + '\nWins:  ' + 
-    score.wins + ' Losses: ' + score.losses + ' Ties: ' + score.ties);
+        score.ties += 1;
+    }
+
+    localStorage.setItem('score', JSON.stringify(score));
+
+    //update the score en live sur la page pas besoin de refresh, il faut mettre la logique en dessous du local storage
+    updateScoreElement();
+
+    alert('You picked ' + userChoice + ' The computer picked ' + computer + '\n' + result + '\nWins:  ' +
+        score.wins + ' Losses: ' + score.losses + ' Ties: ' + score.ties);
 }
 
 function reset(userChoice) {
 
-    if(userChoice === 'reset') {
+    if (userChoice === 'reset') {
 
         score.wins = 0;
         score.losses = 0;
         score.ties = 0;
         localStorage.removeItem('score')
+        updateScoreElement();
     }
+}
+
+function updateScoreElement() {
+
+    document.querySelector('.js-score').innerHTML = `Wins: 
+    ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
 }

@@ -3,14 +3,6 @@
     background-color:salmon
 }
 
-.rps-button {
-
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  
-}
-
 .rock-button {
 
     padding: 0.5rem 1rem;
